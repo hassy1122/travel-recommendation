@@ -76,6 +76,14 @@ body {
     background-color: #2980b9;
 }
 
+#clearBtn {
+    background-color: #e74c3c;
+}
+
+#clearBtn:hover {
+    background-color: #c0392b;
+}
+
 /* Hero Section */
 .hero {
     background: linear-gradient(135deg, #1a2a6c, #b21f1f, #fdbb2d);

@@ -101,6 +101,20 @@ function searchDestinations() {
     }
 }
 
+// Clear Search Functionality
+function clearSearch() {
+    const searchInput = document.getElementById('searchInput');
+    const resultsSection = document.getElementById('search-results');
+    
+    if (searchInput) {
+        searchInput.value = '';
+    }
+    
+    if (resultsSection) {
+        resultsSection.style.display = 'none';
+    }
+}
+
 // Contact Form Handling
 document.addEventListener('DOMContentLoaded', function() {
     const contactForm = document.getElementById('contactForm');
