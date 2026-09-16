@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Travel Recommendation - Home</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <nav class="navbar">
+        <div class="logo">
+            <h2>Travel Recommendation</h2>
+        </div>
+        <ul class="nav-links">
+            <li><a href="index.html" class="active">Home</a></li>
+            <li><a href="about.html">About Us</a></li>
+            <li><a href="contact.html">Contact Us</a></li>
+        </ul>
+        <div class="search-box">
+            <input type="text" id="searchInput" placeholder="Search destinations...">
+            <button id="searchBtn" onclick="searchDestinations()">Search</button>
+        </div>
+    </nav>
+
+    <header class="hero">
+        <div class="hero-content">
+            <h1>Discover Your Next Adventure</h1>
+            <p>Explore breathtaking destinations around the world. From serene beaches to ancient temples, find your perfect getaway.</p>
+            <button class="cta-btn" onclick="window.location.href='#recommendations'">Explore Now</button>
+        </div>
+    </header>
+
+    <section id="recommendations" class="recommendations-section">
+        <h2>Popular Recommendations</h2>
+        
+        <div class="recommendation-categories">
+            <div class="category-card" onclick="window.location.href='beaches.html'">
+                <div class="category-icon">🏖️</div>
+                <h3>Beaches</h3>
+                <p>Discover stunning coastal destinations with crystal clear waters and pristine sands.</p>
+                <button class="explore-btn">Explore Beaches</button>
+            </div>
+            
+            <div class="category-card" onclick="window.location.href='temples.html'">
+                <div class="category-icon">🛕</div>
+                <h3>Temples</h3>
+                <p>Visit ancient temples and experience rich cultural heritage across Asia.</p>
+                <button class="explore-btn">Explore Temples</button>
+            </div>
+            
+            <div class="category-card" onclick="window.location.href='countries.html'">
+                <div class="category-icon">🌍</div>
+                <h3>Countries</h3>
+                <p>Explore diverse countries with unique traditions, cuisines, and landscapes.</p>
+                <button class="explore-btn">Explore Countries</button>
+            </div>
+        </div>
+    </section>
+
+    <section id="search-results" class="search-results" style="display: none;">
+        <h2>Search Results</h2>
+        <div id="results-container"></div>
+    </section>
+
+    <footer>
+        <div class="footer-content">
+            <p>&copy; 2026 Travel Recommendation. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+</html>
