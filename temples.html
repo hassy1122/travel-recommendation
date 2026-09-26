@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Temple Recommendations - Travel Recommendation</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <nav class="navbar">
+        <div class="logo">
+            <h2>Travel Recommendation</h2>
+        </div>
+        <ul class="nav-links">
+            <li><a href="index.html">Home</a></li>
+            <li><a href="about.html">About Us</a></li>
+            <li><a href="contact.html">Contact Us</a></li>
+        </ul>
+        <div class="search-box">
+            <input type="text" id="searchInput" placeholder="Search destinations...">
+            <button id="searchBtn" onclick="searchDestinations()">Search</button>
+            <button id="clearBtn" onclick="clearSearch()">Clear</button>
+        </div>
+    </nav>
+
+    <main class="recommendation-page">
+        <section class="page-header">
+            <h1>Temple Destinations</h1>
+            <p>Explore ancient temples rich in history and cultural significance.</p>
+        </section>
+
+        <section class="recommendations-grid">
+            <div class="recommendation-card">
+                <div class="card-image">
+                    <img src="https://images.unsplash.com/photo-1555400038-63f5ba517a47?w=600&h=400&fit=crop" alt="Angkor Wat">
+                </div>
+                <div class="card-content">
+                    <h3>Angkor Wat, Cambodia</h3>
+                    <p>Angkor Wat is the largest religious monument in the world, showcasing stunning Khmer architecture. This UNESCO World Heritage site is a must-visit for anyone interested in ancient history and culture.</p>
+                    <div class="card-details">
+                        <span class="location">📍 Siem Reap, Cambodia</span>
+                        <span class="rating">⭐ 4.9/5</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="recommendation-card">
+                <div class="card-image">
+                    <img src="https://images.unsplash.com/photo-1528181304800-259b08848526?w=600&h=400&fit=crop" alt="Bangkok Temple">
+                </div>
+                <div class="card-content">
+                    <h3>Wat Arun, Thailand</h3>
+                    <p>Wat Arun, the Temple of Dawn, is one of Bangkok's most stunning landmarks. Its intricate design and riverside location make it a spectacular sight, especially during sunset.</p>
+                    <div class="card-details">
+                        <span class="location">📍 Bangkok, Thailand</span>
+                        <span class="rating">⭐ 4.7/5</span>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <div class="back-btn-container">
+            <button class="back-btn" onclick="window.location.href='index.html'">← Back to Home</button>
+        </div>
+    </main>
+
+    <footer>
+        <div class="footer-content">
+            <p>&copy; 2026 Travel Recommendation. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+</html>

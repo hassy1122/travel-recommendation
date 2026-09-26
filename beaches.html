@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Beach Recommendations - Travel Recommendation</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <nav class="navbar">
+        <div class="logo">
+            <h2>Travel Recommendation</h2>
+        </div>
+        <ul class="nav-links">
+            <li><a href="index.html">Home</a></li>
+            <li><a href="about.html">About Us</a></li>
+            <li><a href="contact.html">Contact Us</a></li>
+        </ul>
+        <div class="search-box">
+            <input type="text" id="searchInput" placeholder="Search destinations...">
+            <button id="searchBtn" onclick="searchDestinations()">Search</button>
+            <button id="clearBtn" onclick="clearSearch()">Clear</button>
+        </div>
+    </nav>
+
+    <main class="recommendation-page">
+        <section class="page-header">
+            <h1>Beach Destinations</h1>
+            <p>Discover breathtaking beaches with crystal clear waters and pristine sands.</p>
+        </section>
+
+        <section class="recommendations-grid">
+            <div class="recommendation-card">
+                <div class="card-image">
+                    <img src="https://images.unsplash.com/photo-1507525428034-b723cf961d3e?w=600&h=400&fit=crop" alt="Maldives Beach">
+                </div>
+                <div class="card-content">
+                    <h3>Maldives</h3>
+                    <p>The Maldives is a tropical paradise known for its stunning white sand beaches, crystal clear turquoise waters, and luxurious overwater villas. Perfect for honeymooners and beach lovers seeking ultimate relaxation.</p>
+                    <div class="card-details">
+                        <span class="location">📍 Indian Ocean</span>
+                        <span class="rating">⭐ 4.9/5</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="recommendation-card">
+                <div class="card-image">
+                    <img src="https://images.unsplash.com/photo-1476514525535-07fb3b4ae5f1?w=600&h=400&fit=crop" alt="Bali Beach">
+                </div>
+                <div class="card-content">
+                    <h3>Bali, Indonesia</h3>
+                    <p>Bali offers a perfect blend of beautiful beaches, vibrant culture, and stunning rice terraces. From the popular Kuta Beach to the serene Nusa Dua, there's a beach for every type of traveler.</p>
+                    <div class="card-details">
+                        <span class="location">📍 Southeast Asia</span>
+                        <span class="rating">⭐ 4.8/5</span>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <div class="back-btn-container">
+            <button class="back-btn" onclick="window.location.href='index.html'">← Back to Home</button>
+        </div>
+    </main>
+
+    <footer>
+        <div class="footer-content">
+            <p>&copy; 2026 Travel Recommendation. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+</html>
