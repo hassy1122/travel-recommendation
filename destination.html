@@ -1,0 +1,322 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <title>Destination Guide | Wayfarer</title>
+  <meta name="description" content="Best time to visit, honest daily budget, top things to do, seasonality chart, local tips, reviews and an embedded map — everything you need to plan this destination.">
+  <meta name="theme-color" content="#0a4b50">
+  <link rel="canonical" href="https://wayfarer.example/destination.html">
+
+  <meta property="og:type" content="article">
+  <meta property="og:title" content="Destination Guide | Wayfarer">
+  <meta property="og:description" content="Budget breakdown, best time to visit, things to do, seasonality chart and reviews.">
+  <meta property="og:image" content="https://images.unsplash.com/photo-1537996194471-e657df975ab4?auto=format&fit=crop&w=1200&q=80">
+
+  <link rel="icon" href="favicon.svg" type="image/svg+xml">
+  <link rel="manifest" href="manifest.json">
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,600;9..144,700&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css">
+  <link rel="stylesheet" href="css/style.css">
+</head>
+
+<body data-page="destination">
+
+  <header class="navbar">
+    <div class="container">
+      <a class="nav-logo" href="index.html">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 2L4.5 20.5l7.5-4 7.5 4z"/></svg>
+        Wayfarer
+      </a>
+      <nav class="nav-links" aria-label="Primary">
+        <a href="index.html" data-nav>Home</a>
+        <a href="destinations.html" data-nav>Destinations</a>
+        <a href="quiz.html" data-nav>Find your match</a>
+        <a href="itinerary.html" data-nav>Itinerary</a>
+        <a href="blog.html" data-nav>Guides</a>
+        <a href="about.html" data-nav>About</a>
+        <a href="faq.html" data-nav>FAQ</a>
+      </nav>
+      <div class="nav-actions">
+        <button class="nav-icon-btn" data-open-search aria-label="Search destinations">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><circle cx="11" cy="11" r="7"/><path d="M21 21l-4.3-4.3"/></svg>
+        </button>
+        <button class="nav-icon-btn" data-open-wishlist aria-label="Your travel passport">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20.8 4.6a5.5 5.5 0 0 0-7.8 0L12 5.6l-1-1a5.5 5.5 0 0 0-7.8 7.8l1 1L12 21l7.8-7.6 1-1a5.5 5.5 0 0 0 0-7.8z"/></svg>
+          <span class="wish-count">0</span>
+        </button>
+        <button class="nav-icon-btn nav-burger" aria-label="Open menu">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M3 6h18M3 12h18M3 18h18"/></svg>
+        </button>
+        <button class="btn btn--sm nav-cta" data-open-auth>Sign in</button>
+      </div>
+    </div>
+  </header>
+
+  <div class="drawer" id="drawer">
+    <div class="drawer-panel">
+      <button class="drawer-close" aria-label="Close menu">&times;</button>
+      <a href="index.html">Home</a>
+      <a href="destinations.html">Destinations</a>
+      <a href="quiz.html">Find your match</a>
+      <a href="itinerary.html">Itinerary builder</a>
+      <a href="blog.html">Guides</a>
+      <a href="about.html">About</a>
+      <a href="contact.html">Contact</a>
+      <a href="faq.html">FAQ</a>
+      <button class="btn btn--primary" style="margin-top:18px" data-open-auth>Sign in / Join</button>
+    </div>
+  </div>
+
+  <main>
+
+    <!-- ============ HERO + GALLERY ============ -->
+    <section class="detail-hero">
+      <div class="hero-bg" id="detail-bg" role="img" aria-label="Destination photo"></div>
+      <div class="container">
+        <nav class="breadcrumb" aria-label="Breadcrumb">
+          <a href="index.html">Home</a><span>/</span><a href="destinations.html">Destinations</a><span>/</span><span id="crumb-dest" aria-current="page">…</span>
+        </nav>
+        <h1 id="detail-title">Loading…</h1>
+        <div class="detail-sub" id="detail-sub"></div>
+        <div class="gallery-thumbs" id="gallery-thumbs" aria-label="Photo gallery"></div>
+      </div>
+    </section>
+
+    <!-- ============ BODY ============ -->
+    <section class="section section--tight">
+      <div class="container">
+        <div class="detail-layout">
+
+          <!-- main column -->
+          <div>
+
+            <div class="content-block reveal">
+              <h2>Overview</h2>
+              <p id="d-overview" class="lead" style="color:#3c3830"></p>
+            </div>
+
+            <div class="content-block reveal">
+              <h2>Why go</h2>
+              <ul class="highlight-list" id="d-highlights"></ul>
+            </div>
+
+            <div class="content-block reveal">
+              <h2>Top things to do</h2>
+              <ul class="todo-list" id="d-todos"></ul>
+            </div>
+
+            <div class="content-block reveal">
+              <h2>Best time to visit</h2>
+              <div class="season-chart">
+                <div class="chart-tabs" role="group" aria-label="Chart metric">
+                  <button class="chip on" data-chart="temp">Temperature</button>
+                  <button class="chip" data-chart="rain">Rainfall</button>
+                  <button class="chip" data-chart="crowd">Crowd level</button>
+                </div>
+                <div id="season-chart"></div>
+              </div>
+            </div>
+
+            <div class="content-block reveal" id="budget">
+              <h2>Budget calculator</h2>
+              <div class="calc">
+                <div class="calc-controls">
+                  <div class="field-group">
+                    <label for="calc-style">Travel style</label>
+                    <select class="field" id="calc-style">
+                      <option value="budget">Backpacker · dorms &amp; street food</option>
+                      <option value="mid" selected>Mid-range · private room &amp; restaurants</option>
+                      <option value="luxury">Luxury · hotels &amp; guided tours</option>
+                    </select>
+                  </div>
+                  <div class="field-group">
+                    <label for="calc-days">Trip length — <span class="range-val" id="calc-days-val">7 days</span></label>
+                    <input type="range" id="calc-days" min="2" max="21" value="7">
+                  </div>
+                  <div class="field-group">
+                    <label for="calc-people">Travellers — <span class="range-val" id="calc-people-val">1 traveller</span></label>
+                    <input type="range" id="calc-people" min="1" max="8" value="1">
+                  </div>
+                </div>
+                <div class="breakdown" id="breakdown"></div>
+                <div class="calc-total" id="calc-total"></div>
+                <p class="form-note" style="color:var(--muted);margin-top:14px">Estimates are based on our own trips and traveller reports, updated twice yearly. Flights are not included.</p>
+              </div>
+            </div>
+
+            <div class="content-block reveal">
+              <h2>Local tips</h2>
+              <div class="tip-list" id="d-tips"></div>
+            </div>
+
+            <div class="content-block reveal">
+              <h2>Getting there &amp; around</h2>
+              <p id="d-getting" class="lead" style="color:#3c3830"></p>
+            </div>
+
+            <div class="content-block reveal">
+              <h2>Where is it?</h2>
+              <div class="map-shell"><div id="detail-map" role="application" aria-label="Map of this destination"></div></div>
+            </div>
+
+            <div class="content-block reveal">
+              <h2>Visa check</h2>
+              <div class="calc">
+                <div class="field-group" style="max-width:340px">
+                  <label for="visa-nationality">I am a citizen of…</label>
+                  <select class="field" id="visa-nationality"></select>
+                </div>
+                <div id="visa-result" style="margin-top:16px"></div>
+                <p class="form-note" style="color:var(--muted)">Planning aid only — always confirm entry rules with the destination’s embassy before booking.</p>
+              </div>
+            </div>
+
+            <div class="content-block reveal">
+              <h2>Packing list generator</h2>
+              <div class="calc">
+                <div class="calc-controls">
+                  <div class="field-group">
+                    <label for="pk-season">Season you are travelling</label>
+                    <select class="field" id="pk-season">
+                      <option value="any">Whatever the weather does</option>
+                      <option value="summer">Summer</option>
+                      <option value="winter">Winter</option>
+                      <option value="monsoon">Wet / monsoon season</option>
+                    </select>
+                  </div>
+                  <div class="field-group">
+                    <label for="pk-type">Trip type</label>
+                    <select class="field" id="pk-type">
+                      <option value="city">City &amp; culture break</option>
+                      <option value="beach">Beach &amp; relaxation</option>
+                      <option value="hiking">Hiking &amp; outdoors</option>
+                    </select>
+                  </div>
+                </div>
+                <div id="packing-out" style="display:grid;grid-template-columns:repeat(auto-fill,minmax(230px,1fr));gap:10px"></div>
+                <button class="btn btn--ghost btn--sm" id="packing-download" style="margin-top:18px">Download as .txt</button>
+              </div>
+            </div>
+
+            <div class="content-block reveal">
+              <h2>Reviews</h2>
+              <div class="results-bar">
+                <span id="review-summary" class="count"></span>
+              </div>
+              <div style="display:grid;gap:14px" id="review-list"></div>
+
+              <form class="review-form" id="review-form" style="margin-top:20px">
+                <h3 style="margin:0">Write a review</h3>
+                <div class="two">
+                  <div>
+                    <label class="lbl" for="rv-name">Your name</label>
+                    <input class="field" id="rv-name" required placeholder="Alex P.">
+                  </div>
+                  <div>
+                    <span class="lbl">Rating</span>
+                    <div class="rating-pick" id="rating-pick"></div>
+                  </div>
+                </div>
+                <div class="full">
+                  <label class="lbl" for="rv-photo">Photo from your trip (optional, under 400 KB)</label>
+                  <input class="field" type="file" id="rv-photo" accept="image/*">
+                </div>
+                <div class="full">
+                  <label class="lbl" for="rv-text">Your review</label>
+                  <textarea class="field" id="rv-text" rows="4" required placeholder="What worked, what did not, what you would tell a friend…"></textarea>
+                </div>
+                <button class="btn btn--primary" type="submit">Post review</button>
+                <p class="form-note" style="color:var(--muted)">Reviews are stored locally in this demo and moderated by keyword in production.</p>
+              </form>
+            </div>
+
+            <div class="content-block reveal">
+              <h2>Similar destinations</h2>
+              <p class="lead" style="color:var(--muted);margin-bottom:22px">If you liked this, travellers also rated these highly.</p>
+              <div class="grid-3" id="d-related"></div>
+            </div>
+
+          </div>
+
+          <!-- quick facts sidebar -->
+          <aside class="quick-facts" aria-label="Quick facts">
+            <header>
+              <strong>Quick facts</strong>
+              <span>Everything at a glance</span>
+            </header>
+            <dl id="d-facts" style="margin:0"></dl>
+            <div class="actions">
+              <button class="btn btn--primary" id="detail-save" data-wish="">Save to passport</button>
+              <button class="btn btn--ghost" id="detail-visited">Mark as visited</button>
+              <a class="btn btn--dark" href="itinerary.html">Add to itinerary</a>
+              <a class="btn btn--ghost btn--sm" href="quiz.html">Not sure? Take the quiz</a>
+            </div>
+          </aside>
+
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <footer class="footer">
+    <div class="container">
+      <div class="footer-grid">
+        <div class="footer-brand">
+          <a class="nav-logo" href="index.html">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 2L4.5 20.5l7.5-4 7.5 4z"/></svg>
+            Wayfarer
+          </a>
+          <p>Travel recommendations with depth and personalisation — honest budgets, real seasons, no paid rankings.</p>
+          <p class="disclosure">Some links on this site are affiliate links. If you book through them we may earn a commission at no extra cost to you. This never affects our rankings.</p>
+        </div>
+        <div>
+          <h4>Explore</h4>
+          <ul>
+            <li><a href="destinations.html">All destinations</a></li>
+            <li><a href="quiz.html">Recommendation quiz</a></li>
+            <li><a href="itinerary.html">Itinerary builder</a></li>
+            <li><a href="blog.html">Guides &amp; blog</a></li>
+          </ul>
+        </div>
+        <div>
+          <h4>Company</h4>
+          <ul>
+            <li><a href="about.html">About us</a></li>
+            <li><a href="contact.html">Contact</a></li>
+            <li><a href="faq.html">FAQ</a></li>
+          </ul>
+        </div>
+        <div>
+          <h4>Legal</h4>
+          <ul>
+            <li><a href="privacy.html">Privacy policy</a></li>
+            <li><a href="terms.html">Terms of service</a></li>
+            <li><a href="404.html">404 page</a></li>
+          </ul>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <span>© 2026 Wayfarer. Built for travellers, not algorithms.</span>
+        <div class="footer-social">
+          <a href="#" aria-label="Instagram"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="1"/></svg></a>
+          <a href="#" aria-label="YouTube"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="5" width="20" height="14" rx="4"/><path d="M10 9l6 3-6 3z"/></svg></a>
+          <a href="#" aria-label="Pinterest"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="9"/><path d="M9 20l3-9M12 8a2.5 2.5 0 1 1 2 4"/></svg></a>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <button class="to-top" aria-label="Back to top"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" width="18" height="18"><path d="M12 19V5M5 12l7-7 7 7"/></svg></button>
+
+  <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js" defer></script>
+  <script src="js/data.js" defer></script>
+  <script src="js/app.js" defer></script>
+  <script src="js/pages.js" defer></script>
+</body>
+</html>

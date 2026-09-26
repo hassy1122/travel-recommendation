@@ -1,0 +1,13 @@
+{
+  "name": "Wayfarer — Travel Recommendations",
+  "short_name": "Wayfarer",
+  "description": "Personalised destination recommendations, budget breakdowns, seasonality charts and an offline itinerary builder.",
+  "start_url": "index.html",
+  "scope": ".",
+  "display": "standalone",
+  "background_color": "#faf4ea",
+  "theme_color": "#0a4b50",
+  "icons": [
+    { "src": "favicon.svg", "sizes": "any", "type": "image/svg+xml", "purpose": "any" }
+  ]
+}

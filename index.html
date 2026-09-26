@@ -1,0 +1,325 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <title>Wayfarer — Travel Recommendations Built Around You</title>
+  <meta name="description" content="Personalised destination recommendations, honest budget breakdowns, seasonality charts and a drag-and-drop itinerary builder. Advice from a well-travelled friend, not a directory.">
+  <meta name="theme-color" content="#0a4b50">
+  <link rel="canonical" href="https://wayfarer.example/">
+
+  <meta property="og:type" content="website">
+  <meta property="og:title" content="Wayfarer — Travel Recommendations Built Around You">
+  <meta property="og:description" content="Take the 60-second quiz and get a ranked list of destinations that actually fit your budget, dates and interests.">
+  <meta property="og:image" content="https://images.unsplash.com/photo-1500534623283-312aade485b7?auto=format&fit=crop&w=1200&q=80">
+  <meta name="twitter:card" content="summary_large_image">
+
+  <link rel="icon" href="favicon.svg" type="image/svg+xml">
+  <link rel="manifest" href="manifest.json">
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,600;9..144,700&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css">
+  <link rel="stylesheet" href="css/style.css">
+</head>
+
+<body data-page="home">
+
+  <!-- ============ NAVBAR ============ -->
+  <header class="navbar">
+    <div class="container">
+      <a class="nav-logo" href="index.html">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 2L4.5 20.5l7.5-4 7.5 4z"/></svg>
+        Wayfarer
+      </a>
+
+      <nav class="nav-links" aria-label="Primary">
+        <a href="index.html" data-nav>Home</a>
+        <a href="destinations.html" data-nav>Destinations</a>
+        <a href="quiz.html" data-nav>Find your match</a>
+        <a href="itinerary.html" data-nav>Itinerary</a>
+        <a href="blog.html" data-nav>Guides</a>
+        <a href="about.html" data-nav>About</a>
+        <a href="faq.html" data-nav>FAQ</a>
+      </nav>
+
+      <div class="nav-actions">
+        <button class="nav-icon-btn" data-open-search aria-label="Search destinations">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><circle cx="11" cy="11" r="7"/><path d="M21 21l-4.3-4.3"/></svg>
+        </button>
+        <button class="nav-icon-btn" data-open-wishlist aria-label="Your travel passport">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20.8 4.6a5.5 5.5 0 0 0-7.8 0L12 5.6l-1-1a5.5 5.5 0 0 0-7.8 7.8l1 1L12 21l7.8-7.6 1-1a5.5 5.5 0 0 0 0-7.8z"/></svg>
+          <span class="wish-count">0</span>
+        </button>
+        <button class="nav-icon-btn nav-burger" aria-label="Open menu">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M3 6h18M3 12h18M3 18h18"/></svg>
+        </button>
+        <button class="btn btn--sm nav-cta" data-open-auth>Sign in</button>
+      </div>
+    </div>
+  </header>
+
+  <div class="drawer" id="drawer">
+    <div class="drawer-panel">
+      <button class="drawer-close" aria-label="Close menu">&times;</button>
+      <a href="index.html">Home</a>
+      <a href="destinations.html">Destinations</a>
+      <a href="quiz.html">Find your match</a>
+      <a href="itinerary.html">Itinerary builder</a>
+      <a href="blog.html">Guides</a>
+      <a href="about.html">About</a>
+      <a href="contact.html">Contact</a>
+      <a href="faq.html">FAQ</a>
+      <button class="btn btn--primary" style="margin-top:18px" data-open-auth>Sign in / Join</button>
+    </div>
+  </div>
+
+  <main>
+
+    <!-- ============ HERO ============ -->
+    <section class="hero" id="home">
+      <div class="hero-bg" data-bg="https://images.unsplash.com/photo-1500534623283-312aade485b7?auto=format&fit=crop&w=1800&q=80" role="img" aria-label="Mountain valley at sunrise"></div>
+
+      <div class="hero-inner">
+        <span class="hero-eyebrow">Personal travel recommendations</span>
+        <h1>Find the trip that actually fits you</h1>
+        <p class="lead">Eighteen destinations, researched properly — with honest costs, month-by-month crowd charts and an itinerary builder that takes minutes, not evenings.</p>
+
+        <form class="search-bar ac-wrap" role="search" onsubmit="return false">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><circle cx="11" cy="11" r="7"/><path d="M21 21l-4.3-4.3"/></svg>
+          <label class="sr-only" for="hero-search">Where do you want to go?</label>
+          <input id="hero-search" data-search-input type="search" placeholder="Where do you want to go? Try “Kyoto” or “cheap and warm”" autocomplete="off">
+          <button class="btn btn--primary" type="button" onclick="location.href='destinations.html'">Explore</button>
+        </form>
+
+        <div class="hero-stats">
+          <div><strong id="stat-count">0</strong><span>deep-dive destinations</span></div>
+          <div><strong>60s</strong><span>to a ranked match list</span></div>
+          <div><strong>$25</strong><span>cheapest verified daily budget</span></div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============ TRENDING ============ -->
+    <section class="section" data-rail>
+      <div class="container">
+        <div class="head reveal">
+          <div>
+            <span class="eyebrow">Trending now</span>
+            <h2>Where travellers are heading</h2>
+            <p>Ranked by saves, reads and ratings over the last 30 days — not by who paid us.</p>
+          </div>
+          <div class="rail-nav">
+            <button data-rail-prev aria-label="Scroll left"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M15 18l-6-6 6-6"/></svg></button>
+            <button data-rail-next aria-label="Scroll right"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M9 18l6-6-6-6"/></svg></button>
+          </div>
+        </div>
+        <div class="rail reveal" id="rail-trending"></div>
+        <div class="center"><a class="btn btn--ghost" href="destinations.html">See all destinations</a></div>
+      </div>
+    </section>
+
+    <!-- ============ BEST FOR THIS MONTH ============ -->
+    <section class="section bg-white" data-rail>
+      <div class="container">
+        <div class="head reveal">
+          <div>
+            <span class="eyebrow">Best for this season</span>
+            <h2>Good right now</h2>
+            <p>Places in their sweet spot this month: dry weather, open trails and crowds that have not peaked.</p>
+          </div>
+          <div class="rail-nav">
+            <button data-rail-prev aria-label="Scroll left"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M15 18l-6-6 6-6"/></svg></button>
+            <button data-rail-next aria-label="Scroll right"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M9 18l6-6-6-6"/></svg></button>
+          </div>
+        </div>
+        <div class="rail reveal" id="rail-season"></div>
+      </div>
+    </section>
+
+    <!-- ============ HOW IT WORKS ============ -->
+    <section class="section">
+      <div class="container">
+        <div class="center reveal" style="margin-bottom:44px">
+          <span class="eyebrow">How Wayfarer works</span>
+          <h2>Four tools, one honest recommendation</h2>
+          <p class="lead">No affiliate-driven rankings, no thin auto-generated stubs. Every page is written by someone who has been there.</p>
+        </div>
+
+        <div class="grid-4">
+          <article class="feature reveal">
+            <div class="feature-ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2l3 6 6 1-4.5 4.3L18 20l-6-3.2L6 20l1.5-6.7L3 9l6-1z"/></svg></div>
+            <h3>60-second quiz</h3>
+            <p>Budget, dates, interests, travel style → a ranked shortlist with every reason shown. No black box.</p>
+          </article>
+
+          <article class="feature reveal">
+            <div class="feature-ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 20l-6-3V4l6 3m0 13l6-3m-6 3V7m6 10l6 3V7l-6-3m0 13V4"/></svg></div>
+            <h3>Explore by map</h3>
+            <p>Click a pin, open the guide. Filter the whole map by region, budget, season or interest.</p>
+          </article>
+
+          <article class="feature reveal">
+            <div class="feature-ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="16" rx="2"/><path d="M3 10h18M8 4v4m8-4v4"/></svg></div>
+            <h3>Seasonality charts</h3>
+            <p>Twelve months of temperature, rainfall and crowd level side by side — so you book the right week.</p>
+          </article>
+
+          <article class="feature reveal">
+            <div class="feature-ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 6h16M4 12h10M4 18h7"/><circle cx="19" cy="17" r="3"/></svg></div>
+            <h3>Itinerary builder</h3>
+            <p>Drag days, drop activities, share a single link. Works offline once you have it open.</p>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============ HIDDEN GEMS ============ -->
+    <section class="section bg-white" data-rail>
+      <div class="container">
+        <div class="head reveal">
+          <div>
+            <span class="eyebrow">Off the beaten path</span>
+            <h2>Hidden gems &amp; better-value picks</h2>
+            <p>Places that outperform their fame — same quality of trip, fewer people and lighter prices.</p>
+          </div>
+          <div class="rail-nav">
+            <button data-rail-prev aria-label="Scroll left"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M15 18l-6-6 6-6"/></svg></button>
+            <button data-rail-next aria-label="Scroll right"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M9 18l6-6-6-6"/></svg></button>
+          </div>
+        </div>
+        <div class="rail reveal" id="rail-gems"></div>
+      </div>
+    </section>
+
+    <!-- ============ QUIZ CTA ============ -->
+    <section class="section">
+      <div class="container">
+        <div class="cta-band reveal">
+          <span class="eyebrow" style="color:#ffd9cc">Personalised recommendations</span>
+          <h2>Not sure where? Answer five questions.</h2>
+          <p class="lead" style="color:rgba(255,255,255,.85)">Tell us your budget, your dates and what you actually enjoy. We score every destination on tag overlap, season fit and trip length — then show you exactly why each one ranked where it did.</p>
+          <div style="display:flex;gap:12px;flex-wrap:wrap;margin-top:26px">
+            <a class="btn btn--primary" href="quiz.html">Take the quiz →</a>
+            <a class="btn btn--ghost btn--ghost-light" href="destinations.html">Or browse everything</a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============ TESTIMONIALS ============ -->
+    <section class="section bg-white">
+      <div class="container">
+        <div class="center reveal" style="margin-bottom:40px">
+          <span class="eyebrow">Social proof</span>
+          <h2>From people who booked through it</h2>
+        </div>
+        <div class="grid-3 reveal" id="testimonials"></div>
+      </div>
+    </section>
+
+    <!-- ============ GUIDES ============ -->
+    <section class="section" data-rail>
+      <div class="container">
+        <div class="head reveal">
+          <div>
+            <span class="eyebrow">From the guide desk</span>
+            <h2>Long-form guides worth reading</h2>
+            <p>Itineraries, real budgets and seasonal advice — the pieces that actually save you money.</p>
+          </div>
+          <div class="rail-nav">
+            <button data-rail-prev aria-label="Scroll left"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M15 18l-6-6 6-6"/></svg></button>
+            <button data-rail-next aria-label="Scroll right"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M9 18l6-6-6-6"/></svg></button>
+          </div>
+        </div>
+        <div class="rail reveal" id="rail-guides"></div>
+        <div class="center"><a class="btn btn--ghost" href="blog.html">All guides</a></div>
+      </div>
+    </section>
+
+    <!-- ============ NEWSLETTER ============ -->
+    <section class="section section--tight">
+      <div class="container">
+        <div class="newsletter reveal">
+          <div>
+            <span class="eyebrow" style="color:#ffe0d5">Newsletter</span>
+            <h2>One shortlist, every Thursday</h2>
+            <p>Three destinations worth your time, one honest budget tip, zero fluff. Unsubscribe in one click.</p>
+          </div>
+          <div>
+            <form class="newsletter-form" data-newsletter novalidate>
+              <label class="sr-only" for="nl-email">Email address</label>
+              <input id="nl-email" type="email" placeholder="you@example.com" required>
+              <button class="btn" type="submit">Join free</button>
+            </form>
+            <p class="form-note">No spam. 12,400+ travellers. We never sell your address.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- ============ FOOTER ============ -->
+  <footer class="footer">
+    <div class="container">
+      <div class="footer-grid">
+        <div class="footer-brand">
+          <a class="nav-logo" href="index.html">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 2L4.5 20.5l7.5-4 7.5 4z"/></svg>
+            Wayfarer
+          </a>
+          <p>Travel recommendations with depth and personalisation — honest budgets, real seasons, no paid rankings.</p>
+          <p class="disclosure">Some links on this site are affiliate links. If you book through them we may earn a commission at no extra cost to you. This never affects our rankings.</p>
+        </div>
+
+        <div>
+          <h4>Explore</h4>
+          <ul>
+            <li><a href="destinations.html">All destinations</a></li>
+            <li><a href="quiz.html">Recommendation quiz</a></li>
+            <li><a href="itinerary.html">Itinerary builder</a></li>
+            <li><a href="blog.html">Guides &amp; blog</a></li>
+          </ul>
+        </div>
+
+        <div>
+          <h4>Company</h4>
+          <ul>
+            <li><a href="about.html">About us</a></li>
+            <li><a href="contact.html">Contact</a></li>
+            <li><a href="faq.html">FAQ</a></li>
+          </ul>
+        </div>
+
+        <div>
+          <h4>Legal</h4>
+          <ul>
+            <li><a href="privacy.html">Privacy policy</a></li>
+            <li><a href="terms.html">Terms of service</a></li>
+            <li><a href="404.html">404 page</a></li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="footer-bottom">
+        <span>© 2026 Wayfarer. Built for travellers, not algorithms.</span>
+        <div class="footer-social">
+          <a href="#" aria-label="Instagram"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="1"/></svg></a>
+          <a href="#" aria-label="YouTube"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="5" width="20" height="14" rx="4"/><path d="M10 9l6 3-6 3z"/></svg></a>
+          <a href="#" aria-label="Pinterest"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="9"/><path d="M9 20l3-9M12 8a2.5 2.5 0 1 1 2 4"/></svg></a>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <button class="to-top" aria-label="Back to top"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" width="18" height="18"><path d="M12 19V5M5 12l7-7 7 7"/></svg></button>
+
+  <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js" defer></script>
+  <script src="js/data.js" defer></script>
+  <script src="js/app.js" defer></script>
+  <script src="js/pages.js" defer></script>
+</body>
+</html>

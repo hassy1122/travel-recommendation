@@ -1,0 +1,5 @@
+User-agent: *
+Allow: /
+
+# Affiliate + SEO hygiene
+Sitemap: https://wayfarer.example/sitemap.xml

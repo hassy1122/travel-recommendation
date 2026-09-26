@@ -1,0 +1,268 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <title>Find Your Match — 60-Second Recommendation Quiz | Wayfarer</title>
+  <meta name="description" content="Five questions about budget, dates, interests and travel style → a ranked list of destinations with every reason shown. Rule-based, transparent, no black box.">
+  <meta name="theme-color" content="#0a4b50">
+  <link rel="canonical" href="https://wayfarer.example/quiz.html">
+
+  <meta property="og:type" content="website">
+  <meta property="og:title" content="Find Your Match | Wayfarer">
+  <meta property="og:description" content="Five questions. Six ranked destinations. Every reason shown.">
+
+  <link rel="icon" href="favicon.svg" type="image/svg+xml">
+  <link rel="manifest" href="manifest.json">
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,600;9..144,700&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/style.css">
+</head>
+
+<body data-page="quiz">
+
+  <header class="navbar" data-always-solid="1">
+    <div class="container">
+      <a class="nav-logo" href="index.html">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 2L4.5 20.5l7.5-4 7.5 4z"/></svg>
+        Wayfarer
+      </a>
+      <nav class="nav-links" aria-label="Primary">
+        <a href="index.html" data-nav>Home</a>
+        <a href="destinations.html" data-nav>Destinations</a>
+        <a href="quiz.html" data-nav>Find your match</a>
+        <a href="itinerary.html" data-nav>Itinerary</a>
+        <a href="blog.html" data-nav>Guides</a>
+        <a href="about.html" data-nav>About</a>
+        <a href="faq.html" data-nav>FAQ</a>
+      </nav>
+      <div class="nav-actions">
+        <button class="nav-icon-btn" data-open-search aria-label="Search destinations">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><circle cx="11" cy="11" r="7"/><path d="M21 21l-4.3-4.3"/></svg>
+        </button>
+        <button class="nav-icon-btn" data-open-wishlist aria-label="Your travel passport">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20.8 4.6a5.5 5.5 0 0 0-7.8 0L12 5.6l-1-1a5.5 5.5 0 0 0-7.8 7.8l1 1L12 21l7.8-7.6 1-1a5.5 5.5 0 0 0 0-7.8z"/></svg>
+          <span class="wish-count">0</span>
+        </button>
+        <button class="nav-icon-btn nav-burger" aria-label="Open menu">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M3 6h18M3 12h18M3 18h18"/></svg>
+        </button>
+        <button class="btn btn--sm nav-cta" data-open-auth>Sign in</button>
+      </div>
+    </div>
+  </header>
+
+  <div class="drawer" id="drawer">
+    <div class="drawer-panel">
+      <button class="drawer-close" aria-label="Close menu">&times;</button>
+      <a href="index.html">Home</a>
+      <a href="destinations.html">Destinations</a>
+      <a href="quiz.html">Find your match</a>
+      <a href="itinerary.html">Itinerary builder</a>
+      <a href="blog.html">Guides</a>
+      <a href="about.html">About</a>
+      <a href="contact.html">Contact</a>
+      <a href="faq.html">FAQ</a>
+      <button class="btn btn--primary" style="margin-top:18px" data-open-auth>Sign in / Join</button>
+    </div>
+  </div>
+
+  <main>
+
+    <section class="page-head">
+      <div class="container">
+        <nav class="breadcrumb" aria-label="Breadcrumb">
+          <a href="index.html">Home</a><span>/</span><span aria-current="page">Find your match</span>
+        </nav>
+        <span class="eyebrow">Personalised recommendations</span>
+        <h1>Five questions to your next trip</h1>
+        <p class="lead">We score every destination on interest overlap, budget fit, season and trip length — and show you exactly why each match ranked where it did.</p>
+      </div>
+    </section>
+
+    <section class="section section--tight">
+      <div class="container">
+
+        <div class="quiz-shell" id="quiz">
+          <div class="quiz-progress"><i id="quiz-progress" style="width:0%"></i></div>
+
+          <div class="quiz-card">
+
+            <!-- STEP 1 -->
+            <div class="quiz-step on">
+              <span class="eyebrow">Question 1 of 5</span>
+              <h2>What do you actually enjoy?</h2>
+              <p class="sub">Pick as many as apply — this is the heaviest weighting in the score.</p>
+              <div class="opt-grid">
+                <button class="opt" data-opt="interests" data-value="adventure">
+                  <span class="opt-ico">🏔</span><strong>Adventure</strong><span>Hiking, diving, big landscapes</span>
+                </button>
+                <button class="opt" data-opt="interests" data-value="relaxation">
+                  <span class="opt-ico">🏖</span><strong>Relaxation</strong><span>Beaches, spas, doing nothing well</span>
+                </button>
+                <button class="opt" data-opt="interests" data-value="culture">
+                  <span class="opt-ico">🏛</span><strong>Culture</strong><span>Museums, temples, history, markets</span>
+                </button>
+                <button class="opt" data-opt="interests" data-value="food">
+                  <span class="opt-ico">🍜</span><strong>Food</strong><span>Street stalls to tasting menus</span>
+                </button>
+                <button class="opt" data-opt="interests" data-value="nightlife">
+                  <span class="opt-ico">🌃</span><strong>Nightlife</strong><span>Bars, live music, late nights</span>
+                </button>
+                <button class="opt" data-opt="interests" data-value="nature">
+                  <span class="opt-ico">🌿</span><strong>Nature</strong><span>Wildlife, trails, national parks</span>
+                </button>
+              </div>
+            </div>
+
+            <!-- STEP 2 -->
+            <div class="quiz-step">
+              <span class="eyebrow">Question 2 of 5</span>
+              <h2>What is your daily budget?</h2>
+              <p class="sub">Per person, per day — accommodation, food, local transport and activities.</p>
+              <div class="opt-grid">
+                <button class="opt" data-opt="budget" data-value="budget">
+                  <span class="opt-ico">🎒</span><strong>Under $50</strong><span>Dorms, street food, free sights</span>
+                </button>
+                <button class="opt" data-opt="budget" data-value="mid">
+                  <span class="opt-ico">🧳</span><strong>$50 – $150</strong><span>Private rooms, restaurants, paid sights</span>
+                </button>
+                <button class="opt" data-opt="budget" data-value="luxury">
+                  <span class="opt-ico">🥂</span><strong>$150+</strong><span>Boutique hotels, guides, the good stuff</span>
+                </button>
+              </div>
+            </div>
+
+            <!-- STEP 3 -->
+            <div class="quiz-step">
+              <span class="eyebrow">Question 3 of 5</span>
+              <h2>How long is the trip?</h2>
+              <p class="sub">Including travel days.</p>
+              <div class="opt-grid">
+                <button class="opt" data-opt="length" data-value="short">
+                  <span class="opt-ico">⚡</span><strong>Up to 5 days</strong><span>Long weekend or short break</span>
+                </button>
+                <button class="opt" data-opt="length" data-value="medium">
+                  <span class="opt-ico">🗓</span><strong>5 – 8 days</strong><span>The classic one-week trip</span>
+                </button>
+                <button class="opt" data-opt="length" data-value="long">
+                  <span class="opt-ico">🌙</span><strong>8+ days</strong><span>Properly deep, two destinations maybe</span>
+                </button>
+              </div>
+            </div>
+
+            <!-- STEP 4 -->
+            <div class="quiz-step">
+              <span class="eyebrow">Question 4 of 5</span>
+              <h2>When are you travelling?</h2>
+              <p class="sub">Pick every month you could go — we weight destinations that are in season then.</p>
+              <div class="opt-grid">
+                <button class="opt" data-opt="months" data-value="0"><strong>January</strong></button>
+                <button class="opt" data-opt="months" data-value="1"><strong>February</strong></button>
+                <button class="opt" data-opt="months" data-value="2"><strong>March</strong></button>
+                <button class="opt" data-opt="months" data-value="3"><strong>April</strong></button>
+                <button class="opt" data-opt="months" data-value="4"><strong>May</strong></button>
+                <button class="opt" data-opt="months" data-value="5"><strong>June</strong></button>
+                <button class="opt" data-opt="months" data-value="6"><strong>July</strong></button>
+                <button class="opt" data-opt="months" data-value="7"><strong>August</strong></button>
+                <button class="opt" data-opt="months" data-value="8"><strong>September</strong></button>
+                <button class="opt" data-opt="months" data-value="9"><strong>October</strong></button>
+                <button class="opt" data-opt="months" data-value="10"><strong>November</strong></button>
+                <button class="opt" data-opt="months" data-value="11"><strong>December</strong></button>
+              </div>
+            </div>
+
+            <!-- STEP 5 -->
+            <div class="quiz-step">
+              <span class="eyebrow">Question 5 of 5</span>
+              <h2>Who is going, and how do you like to travel?</h2>
+              <p class="sub">This fine-tunes the ranking. Nothing is stored on a server.</p>
+              <div class="opt-grid">
+                <button class="opt" data-opt="style" data-value="solo">
+                  <span class="opt-ico">🚶</span><strong>Solo</strong><span>Safety, social hostels, easy logistics</span>
+                </button>
+                <button class="opt" data-opt="style" data-value="couple">
+                  <span class="opt-ico">💞</span><strong>Two of us</strong><span>Food, atmosphere, a good sunset</span>
+                </button>
+                <button class="opt" data-opt="style" data-value="group">
+                  <span class="opt-ico">🎉</span><strong>Group of friends</strong><span>Nightlife, activities, shared costs</span>
+                </button>
+                <button class="opt" data-opt="style" data-value="family">
+                  <span class="opt-ico">👨‍👩‍👧</span><strong>Family</strong><span>Space, nature, low faff</span>
+                </button>
+                <button class="opt" data-opt="style" data-value="slow">
+                  <span class="opt-ico">🐢</span><strong>Slow travel</strong><span>One place, longer, deeper</span>
+                </button>
+              </div>
+            </div>
+
+            <div class="quiz-nav">
+              <button class="btn btn--ghost" id="quiz-back" style="visibility:hidden">← Back</button>
+              <button class="btn btn--primary" id="quiz-next">Continue →</button>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </section>
+
+  </main>
+
+  <footer class="footer">
+    <div class="container">
+      <div class="footer-grid">
+        <div class="footer-brand">
+          <a class="nav-logo" href="index.html">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 2L4.5 20.5l7.5-4 7.5 4z"/></svg>
+            Wayfarer
+          </a>
+          <p>Travel recommendations with depth and personalisation — honest budgets, real seasons, no paid rankings.</p>
+          <p class="disclosure">Some links on this site are affiliate links. If you book through them we may earn a commission at no extra cost to you. This never affects our rankings.</p>
+        </div>
+        <div>
+          <h4>Explore</h4>
+          <ul>
+            <li><a href="destinations.html">All destinations</a></li>
+            <li><a href="quiz.html">Recommendation quiz</a></li>
+            <li><a href="itinerary.html">Itinerary builder</a></li>
+            <li><a href="blog.html">Guides &amp; blog</a></li>
+          </ul>
+        </div>
+        <div>
+          <h4>Company</h4>
+          <ul>
+            <li><a href="about.html">About us</a></li>
+            <li><a href="contact.html">Contact</a></li>
+            <li><a href="faq.html">FAQ</a></li>
+          </ul>
+        </div>
+        <div>
+          <h4>Legal</h4>
+          <ul>
+            <li><a href="privacy.html">Privacy policy</a></li>
+            <li><a href="terms.html">Terms of service</a></li>
+            <li><a href="404.html">404 page</a></li>
+          </ul>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <span>© 2026 Wayfarer. Built for travellers, not algorithms.</span>
+        <div class="footer-social">
+          <a href="#" aria-label="Instagram"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="1"/></svg></a>
+          <a href="#" aria-label="YouTube"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="5" width="20" height="14" rx="4"/><path d="M10 9l6 3-6 3z"/></svg></a>
+          <a href="#" aria-label="Pinterest"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="9"/><path d="M9 20l3-9M12 8a2.5 2.5 0 1 1 2 4"/></svg></a>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <button class="to-top" aria-label="Back to top"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" width="18" height="18"><path d="M12 19V5M5 12l7-7 7 7"/></svg></button>
+
+  <script src="js/data.js" defer></script>
+  <script src="js/app.js" defer></script>
+  <script src="js/pages.js" defer></script>
+</body>
+</html>
